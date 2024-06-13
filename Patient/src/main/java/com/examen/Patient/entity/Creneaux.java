@@ -2,27 +2,27 @@ package com.examen.Patient.entity;
 
 import jakarta.persistence.*;
 
+import java.time.LocalTime;
+
 @Entity
 public class Creneaux {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    private int hdebut;
-    private int mdebut;
-    private int hfin;
-    private int mfin;
+    private LocalTime hdebut;
+    private LocalTime hfin;
 
     @ManyToOne
     @JoinColumn(name= "id_medecin")
     private Medecins medecin;
 
-    public Creneaux(Long id, int hdebut, int mdebut, int hfin, int mfin, Medecins medecin) {
+    public Creneaux() {}
+
+    public Creneaux(Long id, LocalTime hdebut, LocalTime hfin, Medecins medecin) {
         this.id = id;
         this.hdebut = hdebut;
-        this.mdebut = mdebut;
         this.hfin = hfin;
-        this.mfin = mfin;
         this.medecin = medecin;
     }
 
@@ -34,36 +34,20 @@ public class Creneaux {
         this.id = id;
     }
 
-    public int getHdebut() {
+    public LocalTime getHdebut() {
         return hdebut;
     }
 
-    public void setHdebut(int hdebut) {
+    public void setHdebut(LocalTime hdebut) {
         this.hdebut = hdebut;
     }
 
-    public int getMdebut() {
-        return mdebut;
-    }
-
-    public void setMdebut(int mdebut) {
-        this.mdebut = mdebut;
-    }
-
-    public int getHfin() {
+    public LocalTime getHfin() {
         return hfin;
     }
 
-    public void setHfin(int hfin) {
+    public void setHfin(LocalTime hfin) {
         this.hfin = hfin;
-    }
-
-    public int getMfin() {
-        return mfin;
-    }
-
-    public void setMfin(int mfin) {
-        this.mfin = mfin;
     }
 
     public Medecins getMedecin() {

@@ -21,6 +21,10 @@ public class Rv {
     @JoinColumn(name="id_creneau")
     private Creneaux creneau;
 
+
+    // Constructeur par défaut
+    public Rv() {}
+
     public Rv(Long id, Date jour, Patients patient, Creneaux creneau) {
         this.id = id;
         this.jour = jour;
