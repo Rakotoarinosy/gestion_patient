@@ -21,15 +21,17 @@ public class Rv {
     @JoinColumn(name="id_creneau")
     private Creneaux creneau;
 
+    private String horaire;
 
     // Constructeur par défaut
     public Rv() {}
 
-    public Rv(Long id, Date jour, Patients patient, Creneaux creneau) {
+    public Rv(Long id, Date jour, Patients patient, Creneaux creneau, String horaire) {
         this.id = id;
         this.jour = jour;
         this.patient = patient;
         this.creneau = creneau;
+        this.horaire = horaire;
     }
 
     public Long getId() {
@@ -62,5 +64,13 @@ public class Rv {
 
     public void setCreneau(Creneaux creneau) {
         this.creneau = creneau;
+    }
+
+    public String getHoraire() {
+        return horaire;
+    }
+
+    public void setHoraire(String horaire) {
+        this.horaire = horaire;
     }
 }

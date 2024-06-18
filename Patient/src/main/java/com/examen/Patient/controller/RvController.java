@@ -31,7 +31,7 @@ public class RvController {
         return rv != null ? ResponseEntity.ok(rv) : ResponseEntity.notFound().build();
     }
 
-    @PostMapping
+    @PostMapping("/create")
     public ResponseEntity<Rv> createRv(@RequestBody Rv rv) {
         Rv createdRv = rvService.createRv(rv);
         return ResponseEntity.ok(createdRv);

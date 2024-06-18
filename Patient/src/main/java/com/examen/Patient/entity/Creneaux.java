@@ -1,8 +1,9 @@
 package com.examen.Patient.entity;
 
 import jakarta.persistence.*;
-
 import java.time.LocalTime;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 public class Creneaux {
@@ -56,5 +57,34 @@ public class Creneaux {
 
     public void setMedecin(Medecins medecin) {
         this.medecin = medecin;
+    }
+
+    public List<String> getHoraires() {
+        List<String> horaires = new ArrayList<>();
+        if (hdebut != null && hfin != null) {
+            LocalTime start = hdebut;
+            while (start.isBefore(hfin)) {
+                LocalTime end = start.plusMinutes(30);
+                if (end.isAfter(hfin)) {
+                    end = hfin;
+                }
+                horaires.add(start + " - " + end);
+                start = end;
+            }
+        }
+        return horaires;
+    }
+
+    public boolean isOverlapping(LocalTime newHdebut, LocalTime newHfin) {
+        return (newHdebut.isBefore(hfin) && newHfin.isAfter(hdebut));
+    }
+
+    public static boolean canCreateCreneau(List<Creneaux> existingCreneaux, LocalTime newHdebut, LocalTime newHfin) {
+        for (Creneaux creneau : existingCreneaux) {
+            if (creneau.isOverlapping(newHdebut, newHfin)) {
+                return false;
+            }
+        }
+        return true;
     }
 }

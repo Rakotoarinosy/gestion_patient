@@ -34,6 +34,7 @@ public class RvService {
             rv.setJour(updatedRv.getJour());
             rv.setPatient(updatedRv.getPatient());
             rv.setCreneau(updatedRv.getCreneau());
+            rv.setHoraire(updatedRv.getHoraire()); // Corrected assignment
             return rvRepository.save(rv);
         } else {
             return null;
