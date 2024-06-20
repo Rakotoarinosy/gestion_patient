@@ -1,0 +1,38 @@
+<div class="container mt-5">
+  <div class="row">
+    <div class="col">
+      <button class="btn btn-primary">Nouveau creneau</button>
+    </div>
+  </div>
+  <div class="row mt-3">
+    <div class="col">
+      <h2>Liste des Créneaux</h2>
+        <div class="table-responsive">
+          <table class="table">
+            <thead>
+              <tr>
+                <th>ID</th>
+                <th>Médecin Titre</th>
+                <th>Nom</th>
+                <th>Disponibilité</th>
+                <th>Actions</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let creneau of creneaux">
+                <td>{{ creneau.id }}</td>
+                <td>{{ creneau.medecin?.titre }}</td>
+                <td><b> {{ creneau.medecin?.nom }}</b></td>
+                <td>{{ creneau.hdebut }} à {{ creneau.hfin }}</td>
+                <td>
+                  <button class="btn btn-warning m-1">Modifier</button>
+                  <button (click)="deleteCreneau(creneau.id)" class="btn btn-danger">Supprimer</button>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+    </div>
+  </div>
+</div>
+

@@ -7,6 +7,6 @@ export const routes: Routes = [
   { path: 'create-medecin', loadComponent: () => import('./components/medecin/medecin-create/medecin-create.component').then(m => m.MedecinCreateComponent) },
   { path: 'medecins', loadComponent: () => import('./components/medecin/medecin-list/medecin-list.component').then(m => m.MedecinListComponent) },
   { path: 'medecin/edit/:id', loadComponent: () => import('./components/medecin/medecin-edit/medecin-edit.component').then(m => m.MedecinEditComponent) },
-  { path: 'dashboard', loadComponent: () => import('./components/dashboard/dashboard.component').then(m => m.DashboardComponent) },
+  { path: 'creneaux', loadComponent: () => import('./components/creneaux/creneaux-list/creneaux-list.component').then(m => m.CreneauxListComponent) },
   { path: '', redirectTo: '/medecins', pathMatch: 'full' }
 ];
