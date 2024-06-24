@@ -3,11 +3,12 @@ import { Medecin } from '../../../Entity/medecin';
 import { MedecinService } from '../../../services/medecin.service';
 import { Router } from '@angular/router';
 import { FormsModule } from '@angular/forms';
+import { DashboardComponent } from '../../dashboard/dashboard.component';
 
 @Component({
   selector: 'app-medecin-create',
   standalone: true,
-  imports: [FormsModule],
+  imports: [FormsModule,DashboardComponent],
   templateUrl: './medecin-create.component.html',
   styleUrl: './medecin-create.component.scss'
 })
@@ -21,7 +22,7 @@ export class MedecinCreateComponent {
     this.medecinService.createMedicin(this.medecin).subscribe(() => {
 
       this.medecinCreated.emit();
-      this.router.navigate(['medecins']);
+      this.router.navigate(['dashboard/medecins']);
     });
   }
 

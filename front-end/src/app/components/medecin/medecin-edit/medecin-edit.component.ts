@@ -1,16 +1,17 @@
 import { Component, OnInit } from '@angular/core';
 import { Medecin } from '../../../Entity/medecin';
-import { ActivatedRoute, Router } from '@angular/router';
+import { ActivatedRoute, Router, RouterModule } from '@angular/router';
 import { MedecinService } from '../../../services/medecin.service';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
+import { DashboardComponent } from "../../dashboard/dashboard.component";
 
 @Component({
-  selector: 'app-medecin-edit',
-  standalone: true,
-  imports: [CommonModule,FormsModule],
-  templateUrl: './medecin-edit.component.html',
-  styleUrl: './medecin-edit.component.scss'
+    selector: 'app-medecin-edit',
+    standalone: true,
+    templateUrl: './medecin-edit.component.html',
+    styleUrl: './medecin-edit.component.scss',
+    imports: [CommonModule, FormsModule, DashboardComponent,RouterModule]
 })
 export class MedecinEditComponent implements OnInit {
   id: number = 0;
@@ -29,16 +30,15 @@ export class MedecinEditComponent implements OnInit {
     });
   }
 
-
   saveMedecin() {
     this.medecinService.createMedicin(this.medecin).subscribe(() => {
-      this.router.navigate(['/medecins']);
+      this.router.navigate(['/dashboard/medecins']);
     });
   }
 
   updateMedecin() {
     this.medecinService.updateMedecin(this.id, this.medecin).subscribe(() => {
-      this.router.navigate(['/medecins']);
+      this.router.navigate(['/dashboard/medecins']);
     });
   }
 }

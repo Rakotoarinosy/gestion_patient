@@ -48,12 +48,12 @@ export class PatientListComponent implements OnInit {
   }
 
   createPatient() {
-    this.router.navigate(['create-patient']);
+    this.router.navigate(['dashboard/patients/create']);
   }
 
   editPatient(id: number | undefined) {
     if(id != undefined) {
-      this.router.navigate(['patient/edit', id]);
+      this.router.navigate(['dashboard/patients/edit', id]);
     } else{
       console.log("Editer")
     }

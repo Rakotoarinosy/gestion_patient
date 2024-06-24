@@ -15,7 +15,6 @@ export class MedecinService {
 
   getMedecins(): Observable<AxiosResponse<Medecin[]>> {
     return from(axios.get<Medecin[]>(this.baseURL));
-    console.log(this.baseURL)
   }
 
   getMedecin(id: number): Observable<AxiosResponse<Medecin>> {

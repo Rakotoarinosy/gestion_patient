@@ -1,15 +1,16 @@
 import { Component, OnInit } from '@angular/core';
 import { MedecinService } from '../../../services/medecin.service';
-import { Router } from '@angular/router';
+import { Router, RouterModule } from '@angular/router';
 import { Medecin } from '../../../Entity/medecin';
 import { CommonModule } from '@angular/common';
 import { MedecinCreateComponent } from '../medecin-create/medecin-create.component';
+import { DashboardComponent } from '../../dashboard/dashboard.component';
 
 
 @Component({
   selector: 'app-medecin-list',
   standalone: true,
-  imports: [CommonModule,MedecinCreateComponent],
+  imports: [CommonModule,MedecinCreateComponent,DashboardComponent,RouterModule],
   templateUrl: './medecin-list.component.html',
   styleUrl: './medecin-list.component.scss'
 })
@@ -48,12 +49,14 @@ export class MedecinListComponent implements OnInit {
   }
 
   createMedecin() {
-    this.router.navigate(['create-medecin']);
+    this.router.navigate(['dashboard/medecins/create']);
+    console.log("create")
   }
 
   editMedecin(id: number | undefined) {
     if(id != undefined) {
-      this.router.navigate(['medecin/edit', id]);
+      this.router.navigate(['dashboard/medecins/edit', id]);
+      console.log("id est " +id);
     } else{
       console.log("Editer")
     }
