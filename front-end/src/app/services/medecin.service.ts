@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import axios, { AxiosResponse } from 'axios';
 import { Observable } from 'rxjs';
 import { from } from 'rxjs';
-import { Medecin } from '../Entity/medecin';
+import { Medecin } from '../entities/medecin';
 
 @Injectable({
   providedIn: 'root'

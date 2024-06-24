@@ -7,23 +7,35 @@ export const routes: Routes = [
     children: [
       {
         path: 'medecins',
-        loadComponent: () => import('./components/medecin/medecin/medecin.component').then(m => m.MedecinComponent),
+        loadComponent: () => import('./components/layout/layout.component').then(m => m.LayoutComponent),
         children: [
-          { path: '', loadComponent: () => import('./components/medecin/medecin-list/medecin-list.component').then(m => m.MedecinListComponent) },
-          { path: 'create', loadComponent: () => import('./components/medecin/medecin-create/medecin-create.component').then(m => m.MedecinCreateComponent) },
-          { path: 'edit/:id', loadComponent: () => import('./components/medecin/medecin-edit/medecin-edit.component').then(m => m.MedecinEditComponent) }
+          { path: '', loadComponent: () => import('./pages/medecin/medecin-list/medecin-list.component').then(m => m.MedecinListComponent) },
+          { path: 'create', loadComponent: () => import('./pages/medecin/medecin-create/medecin-create.component').then(m => m.MedecinCreateComponent) },
+          { path: 'edit/:id', loadComponent: () => import('./pages/medecin/medecin-edit/medecin-edit.component').then(m => m.MedecinEditComponent) }
         ]
       },
       {
         path: 'patients',
-        loadComponent: () => import('./components/patient/patient/patient.component').then(m => m.PatientComponent),
+        loadComponent: () => import('./components/layout/layout.component').then(m => m.LayoutComponent),
         children: [
-          { path: '', loadComponent: () => import('./components/patient/patient-list/patient-list.component').then(m => m.PatientListComponent) },
-          { path: 'create', loadComponent: () => import('./components/patient/patient-create/patient-create.component').then(m => m.PatientCreateComponent) },
-          { path: 'edit/:id', loadComponent: () => import('./components/patient/patient-edit/patient-edit.component').then(m => m.PatientEditComponent) }
+          { path: '', loadComponent: () => import('./pages/patient/patient-list/patient-list.component').then(m => m.PatientListComponent) },
+          { path: 'create', loadComponent: () => import('./pages/patient/patient-create/patient-create.component').then(m => m.PatientCreateComponent) },
+          { path: 'edit/:id', loadComponent: () => import('./pages/patient/patient-edit/patient-edit.component').then(m => m.PatientEditComponent) }
         ]
       },
-      { path: 'creneaux', loadComponent: () => import('./components/creneaux/creneaux-list/creneaux-list.component').then(m => m.CreneauxListComponent) },
+      { path: 'creneaux',
+        loadComponent: () => import('./components/layout/layout.component').then(m => m.LayoutComponent),
+      children: [
+        { path: '', loadComponent: () => import('./pages/creneaux/creneaux-list/creneaux-list.component').then(m => m.CreneauxListComponent) },
+      ]
+      },
+      { path: 'rvs',
+        loadComponent: () => import('./components/layout/layout.component').then(m => m.LayoutComponent),
+      children: [
+        { path: '', loadComponent: () => import('./pages/rv/rv-list/rv-list.component').then(m => m.RvListComponent) },
+        { path: 'create', loadComponent: () => import('./pages/rv/rv-create/rv-create.component').then(m => m.RvCreateComponent) },
+      ]
+      },
       { path: '', redirectTo: 'medecins', pathMatch: 'full' }
     ]
   },

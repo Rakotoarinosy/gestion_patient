@@ -1,0 +1,39 @@
+<div class="container mt-5" >
+  <div class="row">
+    <div class="col">
+      <button class="btn btn-primary" (click)="createRv()">Nouveau Rendez-vous</button>
+    </div>
+  </div>
+  <div class="row mt-3">
+    <div class="col">
+      <h2>Liste des Rendez-vous</h2>
+      <div class="table-responsive">
+        <table class="table">
+          <thead>
+            <tr>
+              <th>ID</th>
+              <th>Date</th>
+              <th>Medecin</th>
+              <th>Patient</th>
+              <th>Horaire</th>
+              <th>Actions</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let rv of rvs">
+              <td>{{ rv.id }}</td>
+              <td>{{ rv.jour }}</td>
+              <td><b>{{ rv.creneau.medecin.nom }}</b> {{ rv.creneau.medecin.prenom }}</td>
+              <td><b>{{ rv.patient.nom }}</b> {{ rv.patient.prenom }}</td>
+              <td>{{ rv.horaire}}</td>
+              <td>
+                <button class="btn btn-sm btn-warning m-1">Editer</button>
+                <button class="btn btn-sm btn-danger" (click)="deleteRv(rv.id)">Supprimer</button>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>

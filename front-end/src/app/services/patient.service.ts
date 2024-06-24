@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import axios, { AxiosResponse } from 'axios';
 import { Observable } from 'rxjs';
 import { from } from 'rxjs';
-import { Patient } from '../Entity/patient';
+import { Patient } from '../entities/patient';
 
 @Injectable({
   providedIn: 'root'
@@ -15,7 +15,6 @@ export class PatientService {
 
   getPatients(): Observable<AxiosResponse<Patient[]>> {
     return from(axios.get<Patient[]>(this.baseURL));
-    console.log(this.baseURL)
   }
 
   getPatient(id: number): Observable<AxiosResponse<Patient>> {

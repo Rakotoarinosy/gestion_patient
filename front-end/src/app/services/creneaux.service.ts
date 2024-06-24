@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import axios, { AxiosResponse } from 'axios';
 import { Observable, from } from 'rxjs';
-import { Creneaux } from '../Entity/creneaux';
+import { Creneaux } from '../entities/creneaux';
 
 @Injectable({
   providedIn: 'root'
