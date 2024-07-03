@@ -5,4 +5,5 @@ export class Creneaux {
   hdebut?: string;
   hfin?: string;
   medecin?: Medecin;
+  horaires?: string[];
 }

@@ -1,5 +1,4 @@
-import { Component, EventEmitter, Output } from '@angular/core';
-import { Rv } from '../../../entities/rv';
+import { Component, OnInit } from '@angular/core';
 import { RvService } from '../../../services/rv.service';
 import { Router } from '@angular/router';
 import { FormsModule } from '@angular/forms';
@@ -11,43 +10,49 @@ import { Creneaux } from '../../../entities/creneaux';
 @Component({
   selector: 'app-rv-create',
   standalone: true,
-  imports: [FormsModule,DashboardComponent,CommonModule],
+  imports: [FormsModule, DashboardComponent, CommonModule],
   templateUrl: './rv-create.component.html',
-  styleUrl: './rv-create.component.scss'
+  styleUrls: ['./rv-create.component.scss']
 })
-export class RvCreateComponent {
-  rv: Rv = new Rv();
-  patients: Patient[] = [];
+export class RvCreateComponent implements OnInit {
+
+  rendezvous = {
+    jour: new Date(),
+    client: '',
+    creneau: '',
+    horaires: '',
+  };
+
+  clients: Patient[] = [];
   creneaux: Creneaux[] = [];
   horaires: string[] = [];
-  @Output() rvCreated = new EventEmitter<void>();
 
-  constructor(private rvService: RvService, private router: Router) { }
+  constructor(private rvService: RvService) { }
 
-  ngOnInit() {
-    // this.loadPatients();
-    // this.loadCreneaux()
+  ngOnInit(): void {
+    this.rvService.getPatients().subscribe(reponse => {
+      this.clients = reponse.data;
+    });
+
+    this.rvService.getCreneaux().subscribe(reponse => {
+      this.creneaux = reponse.data;
+    });
   }
 
-  /*loadPatients() {
-    this.rvService.getPatients().subscribe(
-      reponse => {
-        this.patients = reponse.data;
-      });
+  onMedecinChange(event: any) {
+    const selectedMedecinId = event.target.value;
+    console.log(`selectedMedecinId ${selectedMedecinId}`)
+    const filteredCreneaux = this.creneaux.filter(creneau => creneau.medecin && creneau.medecin.id === selectedMedecinId);
+    console.log(`filteredCreneaux = ${filteredCreneaux}`)
+    const horairesArray = filteredCreneaux.map(creneau => creneau.horaires).filter(horaire => horaire !== undefined);
+    console.log(`horairesArray ${horairesArray}`)
+    this.horaires = horairesArray.flat().filter(horaire => horaire !== undefined) as string[];
+    console.log(this.horaires)
   }
 
-  loadCreneaux() {
-    this.rvService.getCreneaux().subscribe(
-      reponse => {
-        this.patients = reponse.data;
-      });
-  }*/
-
-  saveRv() {
-    this.rvService.createRv(this.rv).subscribe(() => {
-
-      this.rvCreated.emit();
-      this.router.navigate(['dashboard/medecins']);
+  handleSubmit() {
+    this.rvService.createRv(this.rendezvous).subscribe(response => {
+      console.log('Rendezvous created', response);
     });
   }
 

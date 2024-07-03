@@ -1,26 +1,37 @@
-<div class="container mt-5">
-  <div class="row">
-    <div class="col">
-      <h2>Créer Rendez-vous</h2>
-      <form (ngSubmit)="saveRv()">
-        <div class="form-group">
-          <label for="titre">Date du rendez-vous:</label>
-          <input type="date" class="form-control" id="titre" [(ngModel)]="rv.jour" name="titre">
-        </div>
-        <div class="form-group">
-          <label for="titre">Nom du Patient:</label>
-          <input type="text" class="form-control" id="nom" [(ngModel)]="rv.jour" name="nom">
-        </div>
-        <div>
-          <label for="patient">Patient</label>
-          <select id="patient" formControlName="patient">
-            <option *ngFor="let patient of patients" [value]="patient.id">
-              {{ patient.nom }}
-            </option>
-          </select>
-        </div>
-        <button type="submit" class="btn btn-primary">Enregistrer</button>
-      </form>
+<div class="container">
+  <h1>Créer un rendez-vous</h1>
+  <form (ngSubmit)="handleSubmit()">
+    <div class="mb-3">
+      <label>Jour</label>
+      <input type="date" class="form-control" [(ngModel)]="rendezvous.jour" name="jour" required />
     </div>
-  </div>
+    <div class="mb-3">
+      <label>Patient</label>
+      <select class="form-control" [(ngModel)]="rendezvous.client" name="client" required>
+        <option value="">Sélectionnez un patient</option>
+        <option *ngFor="let client of clients" [value]="client.id">
+          {{client.nom}}
+        </option>
+      </select>
+    </div>
+    <div class="mb-3">
+      <label>Médecin</label>
+      <select class="form-control" (change)="onMedecinChange($event)" [(ngModel)]="rendezvous.creneau" name="creneau" required>
+        <option value="">Sélectionnez un médecin</option>
+        <option *ngFor="let creneau of creneaux" [value]="creneau.medecin?.id">
+          {{ creneau.medecin?.titre }} {{ creneau.medecin?.nom }}
+        </option>
+      </select>
+    </div>
+    <div class="mb-3">
+      <label>Horaires</label>
+      <select class="form-control" [(ngModel)]="rendezvous.horaires" name="horaires" required>
+        <option value="">Sélectionnez un horaire</option>
+        <option *ngFor="let horaire of horaires" [value]="horaire">
+          {{ horaire }}
+        </option>
+      </select>
+    </div>
+    <button type="submit" class="btn btn-primary">Submit</button>
+  </form>
 </div>
